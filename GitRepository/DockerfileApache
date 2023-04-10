@@ -1,0 +1,23 @@
+FROM 	ubuntu:20.04
+
+USER root
+
+ENV TZ=America/Argentina/Buenos_Aires
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN ln -fs /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
+
+RUN apt-get install -y vim
+RUN apt-get install -y apache2
+
+WORKDIR /var/www/html
+
+
+
+COPY ./html/ .
+
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+CMD []
+#CMD ["apache2ctl", "-D", "FOREGROUND"]
