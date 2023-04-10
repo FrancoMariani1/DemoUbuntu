@@ -1,0 +1,1 @@
+FROM francomariani/demoapache:latest
